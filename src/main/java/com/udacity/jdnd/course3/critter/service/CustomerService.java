@@ -6,10 +6,12 @@ import com.udacity.jdnd.course3.critter.repository.PetRepository;
 import com.udacity.jdnd.course3.critter.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
@@ -30,6 +32,5 @@ public class CustomerService {
 
     public Customer findCustomerByPetId(Long petId) {
         return customerRepository.findByPetsId(petId);
-//        return customerRepository.findCustomerByPetId(petId);
     }
 }

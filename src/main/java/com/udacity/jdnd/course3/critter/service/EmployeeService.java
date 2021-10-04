@@ -5,6 +5,7 @@ import com.udacity.jdnd.course3.critter.entity.Employee;
 import com.udacity.jdnd.course3.critter.common.EmployeeSkill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.rmi.NoSuchObjectException;
 import java.time.DayOfWeek;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Transactional
 public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
