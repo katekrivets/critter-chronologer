@@ -37,6 +37,21 @@ public class PetController {
         }
     }
 
+    @PutMapping("/{petId}")
+    public PetDTO savePetById(@RequestBody PetDTO petDTO, @PathVariable long petId) {
+        petDTO.setId(petId);
+        try {
+            return parsePetToPetDto(
+                    petService.save(
+                            parsePetDtoToPet(petDTO),
+                            petDTO.getOwnerId()
+                    )
+            );
+        } catch (NoSuchObjectException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
     @GetMapping("/{petId}")
     public PetDTO getPet(@PathVariable long petId) {
         try {
